@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:homefort_app/screens/gallery_page.dart';
+import 'package:homefort_app/screens/reset_password.dart';
 import 'package:homefort_app/screens/signup.dart';
 import 'package:homefort_app/utility/colors.dart';
 import 'package:homefort_app/utility/helper_function.dart';
@@ -129,8 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             textColor: AppColors.lightGreen,
                           ),
                           onTap: () {
-                            Navigator.pushNamed(
-                                context, RoutesUrl.createpassword);
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> CreatePassword()));
                           },
                         ),
                         addVerticalSpacing(

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:homefort_app/screens/login.dart';
 import 'package:homefort_app/utility/colors.dart';
 import 'package:homefort_app/utility/helper_function.dart';
 import 'package:homefort_app/utility/route.dart';
@@ -22,7 +23,9 @@ class _CreatePasswordState extends State<CreatePassword> {
           context,
           "Password Set Successfully",
           " Kindly log-in to proceed!",
-              () => Navigator.pushNamed(context, RoutesUrl.loginscreen));
+              () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()),);
+              });
     } else {
       errorAlert(context, "OOPS",
           "Credentials inputted are invalid!");
