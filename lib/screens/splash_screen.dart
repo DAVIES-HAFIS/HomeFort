@@ -1,11 +1,11 @@
-import 'dart:async';
+
 
 import 'package:flutter/material.dart';
+import 'package:homefort_app/screens/login.dart';
 import 'package:homefort_app/utility/colors.dart';
 import 'package:homefort_app/utility/helper_function.dart';
-import 'package:homefort_app/utility/navigate.dart';
 import 'package:homefort_app/utility/route.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 String finalEmail;
 
@@ -17,26 +17,6 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
-
-  @override
-  void initState() {
-    getValidationData().whenComplete(()  {
-      if(finalEmail == null){
-        Timer(Duration(seconds: 10), ()=> navigateAndReplaceRoute(context,RoutesUrl.loginscreen));
-      } else {
-        Timer(Duration(seconds: 10), ()=> navigateAndReplaceRoute(context, RoutesUrl.galleryscreen));
-      }
-    });
-    super.initState();
-  }
-
-  getValidationData() async{
-    final SharedPreferences _prefs = await SharedPreferences.getInstance();
-    var obtainEmail = _prefs.getString('email');
-    setState(() {
-      finalEmail = obtainEmail;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +69,22 @@ class _SplashScreenState extends State<SplashScreen> {
                     addVerticalSpacing(100),
                     Text('HomeFort Energy, 2021 Copyright',textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: AppColors.lightGreen, fontWeight: FontWeight.w700,fontSize: 12),),
+                          color: Colors.black, fontWeight: FontWeight.w700,fontSize: 12),),
+                    Padding(
+                      padding: EdgeInsets.all(50),
+                      child: GestureDetector(
+                        child: AppButton(
+                          buttonColor: AppColors.lightDeepGreen,
+                          buttonContent: 'Get Started',
+                          contentColor: AppColors.greyWhite,
+                        ),
+                        onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
+                        },
+                        // validate(context),
+
+                      ),
+                    ),
                   ],
                 ),
               ),

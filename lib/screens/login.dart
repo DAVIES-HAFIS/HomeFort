@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:homefort_app/screens/gallery_page.dart';
+import 'package:homefort_app/screens/signup.dart';
 import 'package:homefort_app/utility/colors.dart';
 import 'package:homefort_app/utility/helper_function.dart';
 import 'package:homefort_app/utility/route.dart';
@@ -149,8 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     () async {
                                   final SharedPreferences _prefs = await SharedPreferences.getInstance();
                                   _prefs.setString('email', _email.text);
-                                  Navigator.pushNamed(
-                                      context, RoutesUrl.galleryscreen);
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=> GalleryPage()));
                                 },
                               );
                             } else {
@@ -188,8 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           onTap: () {
-                            Navigator.pushNamed(
-                                context, RoutesUrl.registeration);
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> Registeration()));
                           },
                         ),
                       ],

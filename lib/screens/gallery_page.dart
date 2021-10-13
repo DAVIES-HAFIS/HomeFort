@@ -36,7 +36,7 @@ class _GalleryPageState extends State<GalleryPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title:Text('Welcome $finalEmail'),
+        title:Text('$finalEmail'),
       ),
       body: model == null? Center(
         child: CircularProgressIndicator(),
@@ -93,7 +93,6 @@ class _GalleryPageState extends State<GalleryPage> {
   Future<void> getData() async {
     Uri url = Uri.https('jsonplaceholder.typicode.com', '/photos');
     http.Response res = await http.get(url);
-    print(res.body);
     List<dynamic> body = cnv.jsonDecode(res.body);
     model = body.map((dynamic item)=> DataModel.fromJson(item)).toList();
     setState(() {
