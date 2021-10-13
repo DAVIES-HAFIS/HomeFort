@@ -6,6 +6,8 @@ import 'dart:convert' as cnv;
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'login.dart';
+
 
 class GalleryPage extends StatefulWidget {
   @override
@@ -87,6 +89,15 @@ class _GalleryPageState extends State<GalleryPage> {
               ),
             );
           }),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.logout, color: Colors.white70,),
+        backgroundColor: Colors.red,
+        onPressed: () async {
+          final SharedPreferences _prefs = await SharedPreferences.getInstance();
+          _prefs.remove('email');
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()),);
+        },
+      ),
     );
   }
 

@@ -1,10 +1,15 @@
 
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:homefort_app/screens/login.dart';
 import 'package:homefort_app/utility/colors.dart';
 import 'package:homefort_app/utility/helper_function.dart';
 import 'package:homefort_app/utility/route.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'gallery_page.dart';
 
 
 String finalEmail;
@@ -17,6 +22,25 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
+  @override
+  void initState() {
+    getValidationData().whenComplete(()  {
+      if(finalEmail == null){
+        Timer(Duration(seconds: 4), ()=>  Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()),));
+      } else {
+        Timer(Duration(seconds: 4), ()=>  Navigator.push(context, MaterialPageRoute(builder: (context)=> GalleryPage()),));
+      }
+    });
+    super.initState();
+  }
+
+  getValidationData() async{
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    var obtainEmail = _prefs.getString('email');
+    setState(() {
+      finalEmail = obtainEmail;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,21 +94,6 @@ class _SplashScreenState extends State<SplashScreen> {
                     Text('HomeFort Energy, 2021 Copyright',textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.w700,fontSize: 12),),
-                    Padding(
-                      padding: EdgeInsets.all(50),
-                      child: GestureDetector(
-                        child: AppButton(
-                          buttonColor: AppColors.lightDeepGreen,
-                          buttonContent: 'Get Started',
-                          contentColor: AppColors.greyWhite,
-                        ),
-                        onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
-                        },
-                        // validate(context),
-
-                      ),
-                    ),
                   ],
                 ),
               ),
