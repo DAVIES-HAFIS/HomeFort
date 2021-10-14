@@ -147,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               successAlert(
                                 context,
                                 "Login Successful",
-                                "Welcome to Contest Friday!",
+                                "Welcome to HomeFort Energy!",
                                     () async {
                                   final SharedPreferences _prefs = await SharedPreferences.getInstance();
                                   _prefs.setString('email', _email.text);
@@ -156,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               );
                             } else {
                               errorAlert(context, "OOPS",
-                                  "Enter Login Credentials, your phone number and password is required!");
+                                  "Enter Login Credentials, your email address and password is required!");
                             }
                           },
                           // validate(context),
